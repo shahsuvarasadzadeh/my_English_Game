@@ -1,5 +1,6 @@
 package myEngGame;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class RunMethods {
@@ -27,15 +28,20 @@ public class RunMethods {
                 String a = sc.next();
                 System.out.println(Constants.ADD_ENG_WORD.getS());
                 String b = sc.next();
-                System.out.println(fileOp.add(a, b));
+                    System.out.println(fileOp.add(a, b));
                 break;
             case 3:
                 System.out.println(Constants.ADD_WORDS_ID.getS());
-                System.out.println(fileOp.updateById(sc.nextLine()));
+                int c=sc.nextInt();
+                System.out.println(Constants.ADD_NEW_AZE_WORD.getS());
+                a=sc.next();
+                System.out.println(Constants.ADD_NEW_ENG_WORD.getS());
+                b=sc.next();
+                System.out.println(fileOp.updateById(c,a,b));
                 break;
             case 4:
                 System.out.println(Constants.ADD_WORDS_ID.getS());
-                System.out.println(fileOp.deleteById(sc.nextLine()));
+                System.out.println(fileOp.deleteById(sc.nextInt()));
                 break;
             case 5:
                 main2();
