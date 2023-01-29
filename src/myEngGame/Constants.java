@@ -15,7 +15,8 @@ public enum Constants {
             "2. Stop\n"),
     WRONG_INPUT("pls add correct input") , ADD_AZE_WORD("add azeWord :") , ADD_ENG_WORD("add engWord :") ,
     WORD_UPDATE("Word Updated") , WORD_ADDED("Word Added") , WORD_DELETED("Word Deleted") ,
-    ADD_WORDS_ID("Add Words Id :") , ADD_NEW_AZE_WORD("Add new azeWord :") , ADD_NEW_ENG_WORD("Add new engWord :");
+    ADD_WORDS_ID("Add Words Id :") , ADD_NEW_AZE_WORD("Add new azeWord :") , ADD_NEW_ENG_WORD("Add new engWord :"),
+    NORMAL("Normal") , BAD("Bad") , GOOD("Good");
     private String s;
     Constants(String s) {
         this.s=s;
