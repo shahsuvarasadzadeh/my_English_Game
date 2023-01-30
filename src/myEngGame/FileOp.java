@@ -1,18 +1,16 @@
 package myEngGame;
+
 import service.Service;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
 public class FileOp implements Service {
     Scanner sc = new Scanner(System.in);
     @Override
     public String add(String a, String b) {
-        List<Entity> my = new ArrayList<>();
         try {
             FileInputStream fileInputStream = new FileInputStream("Game.txt");
-            if (fileInputStream.equals(null)) {
+            if (fileInputStream == null) {
                 add1(a, b);
             } else {
                 add2(fileInputStream, a, b);
@@ -74,36 +72,52 @@ public class FileOp implements Service {
         return count;
     }
     @Override
+    public Double m3(int a, int b) {
+        return help(a, b);
+    }
+    @Override
     public String count(int a) {
         FileOp fileOp = new FileOp();
-        int b = fileOp.randomNum(countOfWords()+1);
-        int count = 0;
-        int cnt = 0;
+        int b = fileOp.randomNum(countOfWords() + 1);
+        double d = 0;
+        double count = 0;
+        double cnt = 0;
         int v = 0;
         while (b != 0) {
             cnt++;
             if (a == 1) {
                 System.out.println(fileOp.engAndAzeWord(b, 1));
+                System.out.println(Constants.DO_YOU_WANT_HELP.getS());
+                int l = sc.nextInt();
+                while (l == 1) {
+                    l++;
+                    d += toChar(b, 2);
+                }
                 System.out.println(Constants.ADD_ENG_WORD.getS());
                 v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 2), sc.next());
                 System.out.println(Constants.DONE_OR_STOP.getS());
                 switch (sc.nextInt()) {
                     case 1:
-                        b = fileOp.randomNum(countOfWords()+1);
+                        b = fileOp.randomNum(countOfWords() + 1);
                         break;
                     case 2:
                         b = 0;
                         break;
                 }
             } else if (a == 2) {
-                b = fileOp.randomNum(countOfWords()+1);
                 System.out.println(fileOp.engAndAzeWord(b, 2));
+                System.out.println(Constants.DO_YOU_WANT_HELP.getS());
+                int l = sc.nextInt();
+                while (l == 1) {
+                    l++;
+                    d += toChar(b, 1);
+                }
                 System.out.println(Constants.ADD_AZE_WORD.getS());
                 v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 1), sc.next());
                 System.out.println(Constants.DONE_OR_STOP.getS());
                 switch (sc.nextInt()) {
                     case 1:
-                        b = fileOp.randomNum(countOfWords()+1);
+                        b = fileOp.randomNum(countOfWords() + 1);
                         break;
                     case 2:
                         b = 0;
@@ -111,12 +125,12 @@ public class FileOp implements Service {
                 }
             }
         }
-        count = count + v;
-        int d = count * 100 / cnt;
-        String s = "Your Score : " + count + "/" + cnt + "[" + d + "%" + "]";
-        if (d < 51) {
+        count = (count + v) * 10 - d;
+        double z = count * 100 / (cnt * 10);
+        String s = "Your Score : " + count + "/" + cnt * 10 + "[" + z + "%" + "]";
+        if (z < 51) {
             s = s + Constants.BAD.getS();
-        } else if (d > 51 && d < 81) {
+        } else if (z > 51 && z < 81) {
             s = s + Constants.NORMAL.getS();
         } else {
             s = s + Constants.GOOD.getS();
@@ -161,7 +175,7 @@ public class FileOp implements Service {
         try {
             my = m();
             for (Entity obj : my) {
-                str.append(obj.getAzWord() + "-" + obj.getEngWord() + "\n");
+                str.append(obj.getAzWord()).append("-").append(obj.getEngWord()).append("\n");
             }
         } catch (ClassNotFoundException | IOException e) {
             System.out.println("sorry we have same problems ......");
@@ -175,23 +189,61 @@ public class FileOp implements Service {
         my = (List<Entity>) ois.readObject();
         return my;
     }
-
     @Override
-    public String toChar(int id,int index,int x) {
-        String str = engAndAzeWord(id,index);
-        char[] arr = new char[str.length()];
+    public Double toChar(int id, int index) {
+        int x = 0;
+        double d = 0;
+        List<Double> doub = new ArrayList<>();
+        String str = engAndAzeWord(id, index);
+        List<Character> list = new ArrayList<>();
+        List<Character> lis = new ArrayList<>();
+        Set<Integer> hash_Set = new HashSet<>();
         for (int i = 0; i < str.length(); i++) {
-            arr[i] = str.charAt(i);
+            list.add((str.charAt(i)));
+            lis.add('.');
         }
-        return String.valueOf(arr[x]);
+        hash_Set.add(-1);
+        while (x == 0) {
+            x = randomNum(str.length() + 1) - 1;
+            if (!hash_Set.contains(x)) {
+                d++;
+                for (int i = 0; i < str.length(); i++) {
+                    if (i == x) {
+                        lis.set(x, list.get(x));
+                        hash_Set.add(x);
+                    }
+                    System.out.print(lis.get(i));
+                }
+                System.out.println();
+                System.out.println(Constants.DO_YOU_WANT_HELP_AGAIN.getS());
+                if (sc.nextInt() == 1) {
+                    x = 0;
+                } else {
+                    x = 1;
+                }
+            } else {
+                x = 0;
+            }
+            if (hash_Set.size() == str.length() + 1)
+                x = 1;
+        }
+        double v = str.length();
+        doub.add((10.0 / v) * d);
+        d = 0;
+        for (Double aDouble : doub) {
+            d += aDouble;
+        }
+        return d;
     }
-
-    public static void m1(List<Entity> my) {
+    @Override
+    public Double help(int b, int a) {
+        return toChar(b, a);
+    }
+    private static void m1(List<Entity> my) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Game.txt"))) {
             oos.writeObject(my);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,8 +1,5 @@
 package myEngGame;
-
-import java.io.IOException;
 import java.util.Scanner;
-
 public class RunMethods {
     public static void main2() {
         Scanner sc = new Scanner(System.in);
@@ -15,7 +12,6 @@ public class RunMethods {
             play();
         }
     }
-
     public static void main1() {
         Scanner sc = new Scanner(System.in);
         FileOp fileOp = new FileOp();

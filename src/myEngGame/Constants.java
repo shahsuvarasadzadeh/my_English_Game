@@ -16,8 +16,12 @@ public enum Constants {
     WRONG_INPUT("pls add correct input") , ADD_AZE_WORD("add azeWord :") , ADD_ENG_WORD("add engWord :") ,
     WORD_UPDATE("Word Updated") , WORD_ADDED("Word Added") , WORD_DELETED("Word Deleted") ,
     ADD_WORDS_ID("Add Words Id :") , ADD_NEW_AZE_WORD("Add new azeWord :") , ADD_NEW_ENG_WORD("Add new engWord :"),
-    NORMAL("Normal") , BAD("Bad") , GOOD("Good");
-    private String s;
+    NORMAL("Normal") , BAD("Bad") , GOOD("Good") , DO_YOU_WANT_HELP("Do you want help :\n" +
+            "1. Yes\n" +
+            "2. No") , DO_YOU_WANT_HELP_AGAIN("Do you want help Again :\n" +
+            "1. Yes\n" +
+            "2. No");
+    private final String s;
     Constants(String s) {
         this.s=s;
     }
