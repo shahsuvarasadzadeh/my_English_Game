@@ -7,7 +7,8 @@ public enum Constants {
             "2. add file\n" +
             "3. update file\n" +
             "4. delete file\n" +
-            "5. back"),
+            "5. create New file\n" +
+            "6. back"),
     PLAY("1. Aze :\n" +
             "2. Eng :\n" +
             "4. Back to Main Menu"),
@@ -20,7 +21,14 @@ public enum Constants {
             "1. Yes\n" +
             "2. No") , DO_YOU_WANT_HELP_AGAIN("Do you want help Again :\n" +
             "1. Yes\n" +
-            "2. No");
+            "2. No") , LEVEL("Choose Your Level:" +
+            "1. Elementary\n" +
+            "2. Intermediate\n" +
+            "3. Advanced"), LEVEL_AZE("Seviyenizi secin :\n" +
+            "1. Baslangic\n" +
+            "2. Orta\n" +
+            "3. Yuksek") , PATH("C:\\Users\\Public\\");
+
     private final String s;
     Constants(String s) {
         this.s=s;

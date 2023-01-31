@@ -7,13 +7,13 @@ import java.util.*;
 public class FileOp implements Service {
     Scanner sc = new Scanner(System.in);
     @Override
-    public String add(String a, String b) {
+    public String add(String a, String b,String path) {
         try {
-            FileInputStream fileInputStream = new FileInputStream("Game.txt");
+            FileInputStream fileInputStream = new FileInputStream(path);
             if (fileInputStream == null) {
-                add1(a, b);
+                add1(a, b,path);
             } else {
-                add2(fileInputStream, a, b);
+                add2(fileInputStream, a, b,path);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -21,37 +21,37 @@ public class FileOp implements Service {
         return Constants.WORD_ADDED.getS();
     }
     @Override
-    public String updateById(int i, String a, String b) {
+    public String updateById(int i, String a, String b,String path) {
         List<Entity> my;
         try {
-            my = m();
+            my = m(path);
             my.set(i, new Entity(a, b));
-            m1(my);
+            m1(my,path);
         } catch (ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
         return Constants.WORD_UPDATE.getS();
     }
     @Override
-    public String deleteById(int i) {
+    public String deleteById(int i, String path) {
         List<Entity> my;
         try {
-            my = m();
+            my = m(path);
             my.remove(i - 1);
-            m1(my);
+            m1(my,path);
         } catch (ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
         return Constants.WORD_DELETED.getS();
     }
     @Override
-    public String getById(int id) {
-        String[] s = getAll().split("\n");
+    public String getById(int id,String path) {
+        String[] s = getAll(path).split("\n");
         return s[id - 1];
     }
     @Override
-    public String engAndAzeWord(int id, int index) {
-        String[] s = getById(id).split("-");
+    public String engAndAzeWord(int id, int index,String path) {
+        String[] s = getById(id,path).split("-");
         return s[index - 1];
     }
     @Override
@@ -72,13 +72,13 @@ public class FileOp implements Service {
         return count;
     }
     @Override
-    public Double m3(int a, int b) {
-        return help(a, b);
+    public Double m3(int a, int b,String path) {
+        return help(a, b,path);
     }
     @Override
-    public String count(int a) {
+    public String count(int a,String path) {
         FileOp fileOp = new FileOp();
-        int b = fileOp.randomNum(countOfWords() + 1);
+        int b = fileOp.randomNum(countOfWords(path) + 1);
         double d = 0;
         double count = 0;
         double cnt = 0;
@@ -86,38 +86,38 @@ public class FileOp implements Service {
         while (b != 0) {
             cnt++;
             if (a == 1) {
-                System.out.println(fileOp.engAndAzeWord(b, 1));
+                System.out.println(fileOp.engAndAzeWord(b, 1,path));
                 System.out.println(Constants.DO_YOU_WANT_HELP.getS());
                 int l = sc.nextInt();
                 while (l == 1) {
                     l++;
-                    d += toChar(b, 2);
+                    d += toChar(b, 2,path);
                 }
                 System.out.println(Constants.ADD_ENG_WORD.getS());
-                v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 2), sc.next());
+                v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 2,path), sc.next());
                 System.out.println(Constants.DONE_OR_STOP.getS());
                 switch (sc.nextInt()) {
                     case 1:
-                        b = fileOp.randomNum(countOfWords() + 1);
+                        b = fileOp.randomNum(countOfWords(path) + 1);
                         break;
                     case 2:
                         b = 0;
                         break;
                 }
             } else if (a == 2) {
-                System.out.println(fileOp.engAndAzeWord(b, 2));
+                System.out.println(fileOp.engAndAzeWord(b, 2,path));
                 System.out.println(Constants.DO_YOU_WANT_HELP.getS());
                 int l = sc.nextInt();
                 while (l == 1) {
                     l++;
-                    d += toChar(b, 1);
+                    d += toChar(b, 1,path);
                 }
                 System.out.println(Constants.ADD_AZE_WORD.getS());
-                v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 1), sc.next());
+                v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 1,path), sc.next());
                 System.out.println(Constants.DONE_OR_STOP.getS());
                 switch (sc.nextInt()) {
                     case 1:
-                        b = fileOp.randomNum(countOfWords() + 1);
+                        b = fileOp.randomNum(countOfWords(path) + 1);
                         break;
                     case 2:
                         b = 0;
@@ -138,15 +138,15 @@ public class FileOp implements Service {
         return s;
     }
     @Override
-    public Integer countOfWords() {
-        String[] s = getAll().split("\n");
+    public Integer countOfWords(String path) {
+        String[] s = getAll(path).split("\n");
         return s.length;
     }
     @Override
-    public String add1(String a, String b) {
+    public String add1(String a, String b,String path) {
         List<Entity> my = new ArrayList<>();
         my.add(new Entity(a, b));
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Game.txt"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(my);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -154,7 +154,7 @@ public class FileOp implements Service {
         return Constants.WORD_ADDED.getS();
     }
     @Override
-    public String add2(FileInputStream fileInputStream, String a, String b) {
+    public String add2(FileInputStream fileInputStream, String a, String b,String path) {
         List<Entity> my = new ArrayList<>();
         try {
             ObjectInputStream ois = new ObjectInputStream(fileInputStream);
@@ -162,18 +162,18 @@ public class FileOp implements Service {
         } catch (FileNotFoundException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
-            add1(a, b);
+            add1(a, b,path);
         }
         my.add(new Entity(a, b));
-        m1(my);
+        m1(my,path);
         return Constants.WORD_ADDED.getS();
     }
     @Override
-    public String getAll() {
+    public String getAll(String path) {
         List<Entity> my;
         StringBuilder str = new StringBuilder();
         try {
-            my = m();
+            my = m(path);
             for (Entity obj : my) {
                 str.append(obj.getAzWord()).append("-").append(obj.getEngWord()).append("\n");
             }
@@ -183,18 +183,18 @@ public class FileOp implements Service {
         return str.toString().trim();
     }
     @Override
-    public List<Entity> m() throws IOException, ClassNotFoundException {
+    public List<Entity> m(String path) throws IOException, ClassNotFoundException {
         List<Entity> my;
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Game.txt"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
         my = (List<Entity>) ois.readObject();
         return my;
     }
     @Override
-    public Double toChar(int id, int index) {
+    public Double toChar(int id, int index,String path) {
         int x = 0;
         double d = 0;
         List<Double> doub = new ArrayList<>();
-        String str = engAndAzeWord(id, index);
+        String str = engAndAzeWord(id, index,path);
         List<Character> list = new ArrayList<>();
         List<Character> lis = new ArrayList<>();
         Set<Integer> hash_Set = new HashSet<>();
@@ -236,14 +236,49 @@ public class FileOp implements Service {
         return d;
     }
     @Override
-    public Double help(int b, int a) {
-        return toChar(b, a);
+    public Double help(int b, int a,String path) {
+        return toChar(b, a,path);
     }
-    private static void m1(List<Entity> my) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Game.txt"))) {
+
+    @Override
+    public String createFile(String path) {
+        String str = null;
+        try {
+            File myObj = new File(path);
+            if (myObj.createNewFile()) {
+               str="File created: " + myObj.getName();
+            } else {
+                str="File already exists.";
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+    private static void m1(List<Entity> my,String path) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(my);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public String level(int a) {
+        String str=null;
+            switch (a) {
+                case 1:
+                    str = Constants.PATH.getS()+"Elementary.txt";
+                    break;
+                case 2:
+                    str = Constants.PATH.getS()+"Intermediate.txt";
+                    break;
+                case 3:
+                    str = Constants.PATH.getS()+"Advanced.txt";
+                    break;
+                default:
+                    System.out.println("Wrong input:");
+            }
+            return str;
     }
 }
