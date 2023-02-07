@@ -77,22 +77,4 @@ public class RunMethods {
                 play();
         }
     }
-    public static void highLevel(){
-
-        FileOp fileOp = new FileOp();
-        switch (sc.nextInt()) {
-            case 1:
-                //System.out.println(fileOp.count(1));
-                break;
-            case 2:
-               // System.out.println(fileOp.count(2));
-                break;
-            case 3:
-                main2();
-                break;
-            default:
-                System.out.println(Constants.WRONG_INPUT.getS());
-                play();
-        }
-    }
 }

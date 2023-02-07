@@ -3,8 +3,8 @@ package myEngGame;
 import java.io.Serializable;
 
 public class Entity implements Serializable {
-    private String azWord;
-    private String engWord;
+    private final String azWord;
+    private final String engWord;
     public Entity(String azWord, String engWord) {
         this.azWord = azWord;
         this.engWord = engWord;

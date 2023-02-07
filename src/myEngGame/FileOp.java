@@ -127,7 +127,7 @@ public class FileOp implements Service {
         }
         count = (count + v) * 10 - d;
         double z = count * 100 / (cnt * 10);
-        String s = "Your Score : " + count + "/" + cnt * 10 + "[" + z + "%" + "]";
+        String s = Constants.H1.getS()+Constants.H2.getS()+Constants.SCORE.getS() + count + "/" + cnt * 10 + "[" + z + "%" + "] "+Constants.H2.getS()+"\n";
         if (z < 51) {
             s = s + Constants.BAD.getS();
         } else if (z > 51 && z < 81) {
@@ -161,8 +161,12 @@ public class FileOp implements Service {
             my = (List<Entity>) ois.readObject();
         } catch (FileNotFoundException | ClassNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+        }
+        catch (NullPointerException r){
             add1(a, b,path);
+        }
+        catch (IOException e) {
+            System.out.println(Constants.SORRY.getS());
         }
         my.add(new Entity(a, b));
         m1(my,path);
@@ -178,7 +182,7 @@ public class FileOp implements Service {
                 str.append(obj.getAzWord()).append("-").append(obj.getEngWord()).append("\n");
             }
         } catch (ClassNotFoundException | IOException e) {
-            System.out.println("sorry we have same problems ......");
+            System.out.println(Constants.SORRY.getS());
         }
         return str.toString().trim();
     }
@@ -239,7 +243,6 @@ public class FileOp implements Service {
     public Double help(int b, int a,String path) {
         return toChar(b, a,path);
     }
-
     @Override
     public String createFile(String path) {
         String str = null;
@@ -256,7 +259,6 @@ public class FileOp implements Service {
         }
         return str;
     }
-
     private static void m1(List<Entity> my,String path) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(my);
