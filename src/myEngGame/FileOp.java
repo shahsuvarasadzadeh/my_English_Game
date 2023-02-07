@@ -7,20 +7,6 @@ import java.util.*;
 public class FileOp implements Service {
     Scanner sc = new Scanner(System.in);
     @Override
-    public String add(String a, String b,String path) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(path);
-            if (fileInputStream == null) {
-                add1(a, b,path);
-            } else {
-                add2(fileInputStream, a, b,path);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return Constants.WORD_ADDED.getS();
-    }
-    @Override
     public String updateById(int i, String a, String b,String path) {
         List<Entity> my;
         try {
@@ -72,8 +58,8 @@ public class FileOp implements Service {
         return count;
     }
     @Override
-    public Double m3(int a, int b,String path) {
-        return help(a, b,path);
+    public Double m3(int a, int b, String path) {
+            return help(a, b,path);
     }
     @Override
     public String count(int a,String path) {
@@ -95,15 +81,7 @@ public class FileOp implements Service {
                 }
                 System.out.println(Constants.ADD_ENG_WORD.getS());
                 v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 2,path), sc.next());
-                System.out.println(Constants.DONE_OR_STOP.getS());
-                switch (sc.nextInt()) {
-                    case 1:
-                        b = fileOp.randomNum(countOfWords(path) + 1);
-                        break;
-                    case 2:
-                        b = 0;
-                        break;
-                }
+                b=doneOrStop(b,fileOp,path);
             } else if (a == 2) {
                 System.out.println(fileOp.engAndAzeWord(b, 2,path));
                 System.out.println(Constants.DO_YOU_WANT_HELP.getS());
@@ -114,20 +92,13 @@ public class FileOp implements Service {
                 }
                 System.out.println(Constants.ADD_AZE_WORD.getS());
                 v = v + fileOp.compareWords(fileOp.engAndAzeWord(b, 1,path), sc.next());
-                System.out.println(Constants.DONE_OR_STOP.getS());
-                switch (sc.nextInt()) {
-                    case 1:
-                        b = fileOp.randomNum(countOfWords(path) + 1);
-                        break;
-                    case 2:
-                        b = 0;
-                        break;
-                }
+                b=doneOrStop(b,fileOp,path);
             }
         }
         count = (count + v) * 10 - d;
         double z = count * 100 / (cnt * 10);
-        String s = Constants.H1.getS()+Constants.H2.getS()+Constants.SCORE.getS() + count + "/" + cnt * 10 + "[" + z + "%" + "] "+Constants.H2.getS()+"\n";
+        String s = Constants.H1.getS()+Constants.H2.getS()+Constants.SCORE.getS()
+                + count + "/" + cnt * 10 + "[" + z + "%" + "] "+Constants.H2.getS()+"\n";
         if (z < 51) {
             s = s + Constants.BAD.getS();
         } else if (z > 51 && z < 81) {
@@ -143,7 +114,7 @@ public class FileOp implements Service {
         return s.length;
     }
     @Override
-    public String add1(String a, String b,String path) {
+    public void add1(String a, String b, String path) {
         List<Entity> my = new ArrayList<>();
         my.add(new Entity(a, b));
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
@@ -151,22 +122,17 @@ public class FileOp implements Service {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return Constants.WORD_ADDED.getS();
     }
     @Override
-    public String add2(FileInputStream fileInputStream, String a, String b,String path) {
+    public String add(String a, String b,String path) {
         List<Entity> my = new ArrayList<>();
         try {
-            ObjectInputStream ois = new ObjectInputStream(fileInputStream);
-            my = (List<Entity>) ois.readObject();
+            my = m(path);
         } catch (FileNotFoundException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        catch (NullPointerException r){
+        catch (NullPointerException | IOException e){
             add1(a, b,path);
-        }
-        catch (IOException e) {
-            System.out.println(Constants.SORRY.getS());
         }
         my.add(new Entity(a, b));
         m1(my,path);
@@ -249,17 +215,31 @@ public class FileOp implements Service {
         try {
             File myObj = new File(path);
             if (myObj.createNewFile()) {
-               str="File created: " + myObj.getName();
+               str=Constants.FILE_CREATED.getS() + myObj.getName();
             } else {
-                str="File already exists.";
+                str=Constants.FILE_ALREADY_EXIST.getS();
             }
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println(Constants.ERROR_OCCURRED.getS());
             e.printStackTrace();
         }
         return str;
     }
-    private static void m1(List<Entity> my,String path) {
+    @Override
+    public Integer doneOrStop(int b, FileOp fileOp, String path) {
+        System.out.println(Constants.DONE_OR_STOP.getS());
+        switch (sc.nextInt()) {
+            case 1:
+                b = fileOp.randomNum(countOfWords(path) + 1);
+                break;
+            case 2:
+                b = 0;
+                break;
+        }
+        return b;
+    }
+    @Override
+    public void m1(List<Entity> my,String path) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(my);
         } catch (IOException e) {
@@ -270,16 +250,16 @@ public class FileOp implements Service {
         String str=null;
             switch (a) {
                 case 1:
-                    str = Constants.PATH.getS()+"Elementary.txt";
+                    str = Constants.PATH.getS()+Constants.ELEMENTARY.getS();
                     break;
                 case 2:
-                    str = Constants.PATH.getS()+"Intermediate.txt";
+                    str = Constants.PATH.getS()+Constants.INTERMEDIATE.getS();
                     break;
                 case 3:
-                    str = Constants.PATH.getS()+"Advanced.txt";
+                    str = Constants.PATH.getS()+Constants.ADVANCED.getS();
                     break;
                 default:
-                    System.out.println("Wrong input:");
+                    System.out.println(Constants.WRONG_INPUT.getS());
             }
             return str;
     }

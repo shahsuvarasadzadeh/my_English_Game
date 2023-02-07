@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f49d9b5-a9a9-4fdb-b3f1-6fc354052170" name="Changes" comment="">
+    <list default="true" id="9f49d9b5-a9a9-4fdb-b3f1-6fc354052170" name="Changes" comment="REGULATIONS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/myEngGame/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myEngGame/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myEngGame/Entity_High_Level.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/myEngGame/FileOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/FileOp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myEngGame/RunMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/RunMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +114,7 @@
       <workItem from="1674826687229" duration="22169000" />
       <workItem from="1674974685806" duration="28780000" />
       <workItem from="1675161171195" duration="2584000" />
-      <workItem from="1675773843233" duration="2089000" />
+      <workItem from="1675773843233" duration="8479000" />
     </task>
     <task id="LOCAL-00001" summary="Constants">
       <created>1674753752581</created>
@@ -209,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675017791780</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="REGULATIONS">
+      <created>1675775993612</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1675775993612</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +233,8 @@
     <MESSAGE value="interface class updated" />
     <MESSAGE value="3-th stage completed" />
     <MESSAGE value="4-th stage completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="4-th stage completed" />
+    <MESSAGE value="REGULATIONS" />
+    <option name="LAST_COMMIT_MESSAGE" value="REGULATIONS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -102,7 +102,9 @@ public enum Constants {
             "************************************************"),
     PATH("C:\\Users\\Public\\") , SCORE("Your Score : "),
     H1("************************************************\n"), H2("* "),
-    SORRY("sorry we have same problems ......");
+    SORRY("sorry we have same problems ......"), FILE_CREATED("File created: "),
+    FILE_ALREADY_EXIST("File already exists."), ERROR_OCCURRED("An error occurred."),
+    ELEMENTARY("Elementary.txt"),ADVANCED("Advanced.txt"),INTERMEDIATE("Intermediate.txt");
     private final String s;
     Constants(String s) {
         this.s = s;
