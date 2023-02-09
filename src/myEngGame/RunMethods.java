@@ -13,42 +13,81 @@ public class RunMethods {
         }
     }
     public static void main1() {
+        int i=0;
         FileOp fileOp = new FileOp();
         switch (sc.nextInt()) {
             case 1:
                 System.out.println(Constants.LEVEL.getS());
-                System.out.println(fileOp.getAll(fileOp.level(sc.nextInt())));
+                    System.out.println(fileOp.getAll(fileOp.level(sc.nextInt())));
+                System.out.println(Constants.BACK_TO_START_MENU.getS());
+                    if (sc.nextInt()==1){
+                        main2();
+                    }
                 break;
             case 2:
                 System.out.println(Constants.LEVEL.getS());
                 String path=fileOp.level(sc.nextInt());
-                System.out.println(Constants.ADD_AZE_WORD.getS());
-                String a = sc.next();
-                System.out.println(Constants.ADD_ENG_WORD.getS());
-                String b = sc.next();
-
-                    System.out.println(fileOp.add(a, b,path));
+                while (i==0) {
+                    System.out.println(Constants.ADD_AZE_WORD.getS());
+                    String a = sc.next();
+                    System.out.println(Constants.ADD_ENG_WORD.getS());
+                    String b = sc.next();
+                    System.out.println(fileOp.add(a, b, path));
+                    System.out.println(Constants.BACK.getS());
+                    int r= sc.nextInt();
+                    if (r==1){
+                        i=1;
+                    }
+                    else if (r==2){
+                        main2();
+                    }
+                }
                 break;
             case 3:
+                int z=0;
                 System.out.println(Constants.LEVEL.getS());
                 path=fileOp.level(sc.nextInt());
-                System.out.println(Constants.ADD_WORDS_ID.getS());
-                int c=sc.nextInt();
-                System.out.println(Constants.ADD_NEW_AZE_WORD.getS());
-                a=sc.next();
-                System.out.println(Constants.ADD_NEW_ENG_WORD.getS());
-                b=sc.next();
-                System.out.println(fileOp.updateById(c,a,b,path));
+                while (z==0) {
+                    System.out.println(Constants.ADD_WORDS_ID.getS());
+                    int c = sc.nextInt();
+                    System.out.println(Constants.ADD_NEW_AZE_WORD.getS());
+                    String a = sc.next();
+                    System.out.println(Constants.ADD_NEW_ENG_WORD.getS());
+                    String b = sc.next();
+                    System.out.println(fileOp.updateById(c, a, b, path));
+                    int r= sc.nextInt();
+                    if (r==1){
+                        z=1;
+                    }
+                    else if (r==2){
+                        main2();
+                    }
+                }
                 break;
             case 4:
-                System.out.println(Constants.ADD_WORDS_ID.getS());
-                int q= sc.nextInt();
-                System.out.println(Constants.LEVEL.getS());
-                System.out.println(fileOp.deleteById(q,fileOp.level(sc.nextInt())));
+                int p=0;
+                while (p==0) {
+                    System.out.println(Constants.ADD_WORDS_ID.getS());
+                    int q = sc.nextInt();
+                    System.out.println(Constants.LEVEL.getS());
+                    System.out.println(fileOp.deleteById(q, fileOp.level(sc.nextInt())));
+                    System.out.println(Constants.BACK.getS());
+                    int r= sc.nextInt();
+                    if (r==1){
+                        p=1;
+                    }
+                    else if (r==2){
+                        main2();
+                    }
+                }
                 break;
             case 5:
                 System.out.println(Constants.LEVEL.getS());
                 System.out.println(fileOp.createFile(fileOp.level(sc.nextInt())));
+                System.out.println(Constants.BACK_TO_START_MENU.getS());
+                if (sc.nextInt()==1){
+                    main2();
+                }
                 break;
             case 6:
                 main2();

@@ -145,7 +145,8 @@ public class FileOp implements Service {
         try {
             my = m(path);
             for (Entity obj : my) {
-                str.append(obj.getAzWord()).append("-").append(obj.getEngWord()).append("\n");
+                str.append("[ ").append(obj.getAzWord()).append(" <---> ")
+                        .append(obj.getEngWord()).append(" ]").append("\n");
             }
         } catch (ClassNotFoundException | IOException e) {
             System.out.println(Constants.SORRY.getS());

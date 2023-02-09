@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f49d9b5-a9a9-4fdb-b3f1-6fc354052170" name="Changes" comment="REGULATIONS">
+      <change afterPath="$PROJECT_DIR$/src/myEngGame/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/myEngGame/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/myEngGame/FileOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/FileOp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/myEngGame/RunMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myEngGame/RunMethods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +67,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="myEngGame.Test" />
+      <module name="my_English_Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="myEngGame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="sual.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sual.Main" />
       <module name="my_English_Game" />
@@ -94,6 +109,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.sual.Main" />
         <item itemvalue="Application.test" />
       </list>
@@ -114,7 +130,8 @@
       <workItem from="1674826687229" duration="22169000" />
       <workItem from="1674974685806" duration="28780000" />
       <workItem from="1675161171195" duration="2584000" />
-      <workItem from="1675773843233" duration="8479000" />
+      <workItem from="1675773843233" duration="10706000" />
+      <workItem from="1675928647514" duration="4636000" />
     </task>
     <task id="LOCAL-00001" summary="Constants">
       <created>1674753752581</created>
@@ -214,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675775993612</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="REGULATIONS">
+      <created>1675785119738</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1675785119738</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

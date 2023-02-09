@@ -104,7 +104,18 @@ public enum Constants {
     H1("************************************************\n"), H2("* "),
     SORRY("sorry we have same problems ......"), FILE_CREATED("File created: "),
     FILE_ALREADY_EXIST("File already exists."), ERROR_OCCURRED("An error occurred."),
-    ELEMENTARY("Elementary.txt"),ADVANCED("Advanced.txt"),INTERMEDIATE("Intermediate.txt");
+    ELEMENTARY("Elementary.txt"),ADVANCED("Advanced.txt"),INTERMEDIATE("Intermediate.txt"),
+    BACK_TO_START_MENU("************************************************\n" +
+            "* [1]- Back to menu :                          *\n" +
+            "* [Any number] - STOP :                        *\n" +
+            "************************************************\n"+
+            "* add input : "),
+    BACK("************************************************\n" +
+            "* [1]- STOP:                                   *\n" +
+            "* [2]- Back to menu :                          *\n" +
+            "* [Any number] - Done :                        *\n" +
+            "************************************************\n"+
+            "* add input : ");
     private final String s;
     Constants(String s) {
         this.s = s;

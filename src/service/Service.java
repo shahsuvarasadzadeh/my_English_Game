@@ -25,6 +25,4 @@ public interface Service {
      Double help(int b, int a,String path);
      String createFile(String path);
      Integer doneOrStop(int b, FileOp fileOp, String path);
-
-
 }
